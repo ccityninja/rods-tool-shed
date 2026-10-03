@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rod's Tool Shed – Christchurch car diagnostics & keys</title>
+<title>Rod's Tool Shed – Christchurch car diagnostics and keys</title>
 <meta name="description" content="Rod's automotive tools and the jobs he can do with them.">
 <meta name="robots" content="noindex">
 <style>
@@ -197,7 +197,7 @@ const SAFETY = [
  "Be upfront with customers about what can and can't be done."
 ];
 
-const esc = s => s.replace(/[&<>"]/g,c=>({"&":"&","<":"<",">":">",'"':"""}[c]));
+const esc = s => s.replace(/[\u0026\u003c\u003e\u0022]/g,c=>'\u0026#'+c.charCodeAt(0)+';');
 const toolGrid = document.getElementById('toolgrid');
 toolGrid.innerHTML = TOOLS.map(t=>`<article class="card" data-s="${esc((t.name+' '+t.tags.join(' ')+' '+t.what+' '+t.jobs.join(' ')+' '+t.watch.join(' ')).toLowerCase())}">
   <div>${t.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
