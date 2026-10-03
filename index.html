@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rod's Tool Shed – Christchurch car diagnostics & keys</title>
+<meta name="description" content="Rod's automotive tools and the jobs he can do with them.">
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#0f1115;--card:#181b22;--card2:#1f232c;--line:#2a2f3a;--text:#e6e8ec;--muted:#9aa3b2;--accent:#ff8a1f;--accent2:#4cc2ff;--warn:#ffd24c;--bad:#ff6b6b;--ok:#5fd38d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent2)}
+header{padding:28px 16px 18px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#171a21,#0f1115)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+h1{margin:0;font-size:clamp(1.8rem,6vw,2.6rem);letter-spacing:.3px}
+h1 span{color:var(--accent)}
+.sub{color:var(--muted);margin:.3rem 0 0}
+.note{margin:16px 0 0;padding:10px 14px;border:1px solid var(--warn);border-left-width:5px;border-radius:8px;background:#2a2410;color:#ffeaa0;font-size:.95rem}
+.bar{position:sticky;top:0;z-index:10;background:rgba(15,17,21,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 0}
+.bar .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#q{flex:1 1 240px;min-width:0;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:1rem}
+#q:focus{outline:2px solid var(--accent);border-color:transparent}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav a{padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--muted);font-size:.85rem}
+nav a:hover{color:var(--text);border-color:var(--accent)}
+#count{color:var(--muted);font-size:.85rem;width:100%}
+section{padding:26px 0 6px}
+h2{margin:0 0 14px;font-size:1.4rem;border-left:4px solid var(--accent);padding-left:10px}
+h3{margin:0 0 6px;font-size:1.1rem}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card .what{color:var(--muted);margin:0 0 10px}
+.tag{display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px;background:var(--card2);color:var(--accent2);border:1px solid var(--line);margin:0 4px 8px 0}
+.card h4{margin:12px 0 4px;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.card h4.w{color:var(--warn)}
+ul{margin:0;padding-left:1.15rem}
+li{margin:2px 0}
+.watch li::marker{color:var(--warn)}
+.group{margin-bottom:18px}
+.group h3{color:var(--accent2)}
+.job{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:6px 0}
+.job b{font-weight:600}
+.job .t{color:var(--muted);font-size:.85rem}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:620px;background:var(--card)}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--card2);font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+.check{list-style:none;padding:0}
+.check li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;display:flex;gap:10px;align-items:flex-start}
+.check input{margin-top:5px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+.hidden{display:none!important}
+#none{display:none;padding:20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px;margin-top:20px}
+footer{margin:40px 0 30px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:16px}
+mark{background:var(--accent);color:#111;border-radius:3px;padding:0 2px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Rod's <span>Tool Shed</span></h1>
+    <p class="sub">Christchurch, NZ · my diagnostic, key and ECU gear, and the jobs I can do with it.</p>
+    <div class="note" role="note"><strong>Check vehicle coverage on the maker's supported list before quoting a job.</strong> This page is a general guide only – no specs or prices are promised here.</div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <input id="q" type="search" placeholder="Filter: try “spare key”, “ABS”, “Subaru”, “CAN”…" autocomplete="off" aria-label="Filter tools and jobs">
+    <nav aria-label="Sections">
+      <a href="#tools">Tools</a><a href="#jobs">Jobs</a><a href="#which">Which tool?</a><a href="#safety">Safety</a>
+    </nav>
+    <div id="count" aria-live="polite"></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section id="tools">
+  <h2>Tool cards</h2>
+  <div class="grid" id="toolgrid"></div>
+</section>
+
+<section id="jobs">
+  <h2>Jobs I can do</h2>
+  <div id="jobgroups"></div>
+</section>
+
+<section id="which">
+  <h2>Which tool for which job</h2>
+  <div class="tablewrap">
+    <table id="whichtable">
+      <thead><tr><th>Job</th><th>Go-to tool</th><th>Notes</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="safety">
+  <h2>Safety checklist</h2>
+  <ul class="check" id="checklist"></ul>
+</section>
+
+<div id="none">Nothing matches that filter. Try a shorter word.</div>
+
+<footer>
+  <p><strong>Reminder:</strong> check vehicle coverage on the maker's supported list before quoting a job. Only program keys or flash ECUs for vehicles you own or have the owner's clear consent to work on. Genuine tools and software only.</p>
+  <p>Rod's Tool Shed · general information only.</p>
+</footer>
+</main>
+
+<script>
+const TOOLS = [
+ {name:"Autel MaxiIM KM100X", tags:["Keys","IMMO"], what:"Key programmer / immobiliser (IMMO) tool for supported vehicles.",
+  jobs:["Add a spare key","All-keys-lost (on supported cars)","PIN / security code read where supported","Remote and transponder programming","Key cutting / programming for friends or paid jobs"],
+  watch:["Use a stable power supply during programming","Check the car is on the supported list first","Have the owner's consent and proof of ownership"]},
+ {name:"Autel PS100 – confirm model function", tags:["Keys","Accessory"], what:"Exact function not confirmed. Likely a programming / power-support accessory for the Autel kit – confirm the model before relying on it.",
+  jobs:["Support accessory for Autel key/IMMO work (to be confirmed)"],
+  watch:["Keep voltage stable during programming","Confirm what it actually does before listing it as a service"]},
+ {name:"XTool D8S", tags:["Diagnostics","Bi-directional"], what:"Bi-directional diagnostic scanner for full-system scans and service functions.",
+  jobs:["Full-system fault scans","Clear codes","Live data","Actuator tests","ABS bleed","EPB (electric park brake) service","Throttle relearn","Injector coding","DPF regen","Oil, battery and steering-angle resets","Pre-purchase scans and reports"],
+  watch:["Not every function works on every car – check coverage","Keep a charger on the car for long procedures","Note codes before clearing them"]},
+ {name:"XTool X100 Pro2", tags:["Keys","Programmer"], what:"Key programmer for spare keys and remotes.",
+  jobs:["Spare key programming","Transponder and remote programming","Mobile key jobs (go to the customer)"],
+  watch:["Check vehicle coverage before quoting","Stable power while programming","Owner consent and proof of ownership"]},
+ {name:"CANable 2.0 Pro", tags:["CAN","Hacking"], what:"USB-to-CAN adapter for looking at what a car's CAN bus is saying.",
+  jobs:["Sniff and log CAN traffic","Reverse-engineer messages","Build custom loggers and dashboards","Use SavvyCAN and other open-source tools"],
+  watch:["Listen-only first – don't transmit onto a live car you don't understand","Don't poke at safety systems (airbags, brakes) on the road","Wiring to the right pins matters – double-check the connector"]},
+ {name:"Tactrix OpenPort 2.0", tags:["ECU flash","Subaru","Mitsubishi"], what:"ECU flash cable used with EcuFlash and RomRaider.",
+  jobs:["Read and flash Subaru ECUs","Read and flash Mitsubishi ECUs","Back up the stock ROM first","Datalogging with RomRaider"],
+  watch:["Always save the stock ROM before changing anything","Battery charger on the car","Subaru jobs use this, not the KESS V2"]},
+ {name:"KESS V2", tags:["ECU tuning","TCU"], what:"OBD ECU / TCU tuning read-write tool for supported cars.",
+  jobs:["Stage 1 / economy tunes","Restore stock file","TCU read/write where supported"],
+  watch:["Genuine unit vs clones: clones can brick ECUs","Always have a battery charger on the car","Always save the original file first","Not for Subaru – use the OpenPort","Check the car is on the supported list"]}
+];
+
+const JOBS = [
+ {group:"Keys & immobilisers", items:[
+  ["Add a spare key","Autel KM100X or XTool X100 Pro2"],
+  ["All-keys-lost (supported cars)","Autel KM100X"],
+  ["PIN / security code read","Autel KM100X"],
+  ["Remote and transponder programming","KM100X or X100 Pro2"],
+  ["Key cutting / programming for friends","KM100X or X100 Pro2"]]},
+ {group:"Diagnostics & service resets", items:[
+  ["Full-system fault scan","XTool D8S"],
+  ["Clear codes, view live data","XTool D8S"],
+  ["Actuator tests","XTool D8S"],
+  ["ABS bleed","XTool D8S"],
+  ["EPB service (rear pads)","XTool D8S"],
+  ["Throttle relearn","XTool D8S"],
+  ["Injector coding","XTool D8S"],
+  ["DPF regen","XTool D8S"],
+  ["Oil, battery and steering-angle resets","XTool D8S"]]},
+ {group:"ECU flashing & tuning", items:[
+  ["Read / flash Subaru ECU","Tactrix OpenPort 2.0 (EcuFlash / RomRaider)"],
+  ["Read / flash Mitsubishi ECU","Tactrix OpenPort 2.0"],
+  ["Datalogging (Subaru / Mitsubishi)","Tactrix OpenPort 2.0 + RomRaider"],
+  ["Stage 1 / economy tune (non-Subaru, supported)","KESS V2"],
+  ["Restore stock file","KESS V2 or OpenPort (back up first)"],
+  ["TCU read/write (where supported)","KESS V2"]]},
+ {group:"CAN hacking", items:[
+  ["Sniff and log CAN traffic","CANable 2.0 Pro"],
+  ["Reverse-engineer CAN messages","CANable 2.0 Pro + SavvyCAN"],
+  ["Custom logger / dashboard build","CANable 2.0 Pro + open-source tools"]]},
+ {group:"Side-hustle / Marketplace jobs", items:[
+  ["Mobile spare-key / key replacement","KM100X or X100 Pro2"],
+  ["Pre-purchase scan and report","XTool D8S"],
+  ["Service light / reset jobs","XTool D8S"],
+  ["ABS bleed or EPB service for locals","XTool D8S"],
+  ["Stock ROM backup + flash for Subaru owners","Tactrix OpenPort 2.0"]]}
+];
+
+const WHICH = [
+ ["Spare key (supported car)","Autel KM100X / XTool X100 Pro2","Check coverage; stable power; owner consent."],
+ ["All keys lost","Autel KM100X","Supported cars only."],
+ ["Pre-purchase scan","XTool D8S","Give the buyer a written report."],
+ ["Service reset (oil, EPB, steering angle)","XTool D8S","Check coverage for the specific car."],
+ ["ABS bleed","XTool D8S","Needs the right bleed procedure for the car."],
+ ["DPF regen","XTool D8S","Only when conditions are right; follow the on-screen steps."],
+ ["Subaru ECU flash / datalog","Tactrix OpenPort 2.0","EcuFlash / RomRaider; back up stock ROM first."],
+ ["Mitsubishi ECU flash","Tactrix OpenPort 2.0","Back up stock ROM first."],
+ ["Stage 1 tune (non-Subaru)","KESS V2","Genuine unit only; charger on car; save original."],
+ ["CAN sniffing / logging","CANable 2.0 Pro","SavvyCAN; listen-only to start."],
+ ["PS100 tasks","Autel PS100 – confirm model function","Don't offer as a service until confirmed."]
+];
+
+const SAFETY = [
+ "Battery charger / stable power supply on the car for any programming or flashing.",
+ "Back up the original ECU file (or stock ROM) before any write.",
+ "Check vehicle coverage on the maker's supported list before quoting.",
+ "Get owner consent and proof of ownership before programming keys.",
+ "Use genuine tools and software – clones can brick ECUs.",
+ "Don't use the KESS V2 on Subaru – use the OpenPort.",
+ "Be upfront with customers about what can and can't be done."
+];
+
+const esc = s => s.replace(/[&<>"]/g,c=>({"&":"&","<":"<",">":">",'"':"""}[c]));
+const toolGrid = document.getElementById('toolgrid');
+toolGrid.innerHTML = TOOLS.map(t=>`<article class="card" data-s="${esc((t.name+' '+t.tags.join(' ')+' '+t.what+' '+t.jobs.join(' ')+' '+t.watch.join(' ')).toLowerCase())}">
+  <div>${t.tags.map(x=>`<span class="tag">${esc(x)}</span>`).join('')}</div>
+  <h3>${esc(t.name)}</h3><p class="what">${esc(t.what)}</p>
+  <h4>Jobs</h4><ul>${t.jobs.map(j=>`<li>${esc(j)}</li>`).join('')}</ul>
+  <h4 class="w">Watch-outs</h4><ul class="watch">${t.watch.map(j=>`<li>${esc(j)}</li>`).join('')}</ul>
+</article>`).join('');
+
+document.getElementById('jobgroups').innerHTML = JOBS.map(g=>`<div class="group" data-group>
+  <h3>${esc(g.group)}</h3>
+  ${g.items.map(i=>`<div class="job" data-s="${esc((g.group+' '+i[0]+' '+i[1]).toLowerCase())}"><b>${esc(i[0])}</b><span class="t">${esc(i[1])}</span></div>`).join('')}
+</div>`).join('');
+
+document.querySelector('#whichtable tbody').innerHTML = WHICH.map(r=>`<tr data-s="${esc(r.join(' ').toLowerCase())}"><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('');
+
+document.getElementById('checklist').innerHTML = SAFETY.map((s,i)=>`<li data-s="${esc(s.toLowerCase())}"><input type="checkbox" id="c${i}"><label for="c${i}">${esc(s)}</label></li>`).join('');
+
+const q = document.getElementById('q'), count = document.getElementById('count'), none = document.getElementById('none');
+function apply(){
+  const terms = q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+  let shown = 0;
+  document.querySelectorAll('[data-s]').forEach(el=>{
+    const ok = terms.every(t=>el.dataset.s.includes(t));
+    el.classList.toggle('hidden', !ok);
+    if(ok) shown++;
+  });
+  document.querySelectorAll('[data-group]').forEach(g=>g.classList.toggle('hidden', !g.querySelector('.job:not(.hidden)')));
+  document.querySelectorAll('section').forEach(s=>{
+    const has = s.querySelector('[data-s]:not(.hidden)');
+    s.classList.toggle('hidden', terms.length>0 && !has);
+  });
+  none.style.display = shown===0 ? 'block':'none';
+  count.textContent = terms.length ? `${shown} match${shown===1?'':'es'}` : '';
+}
+q.addEventListener('input', apply);
+</script>
+</body>
+</html>
